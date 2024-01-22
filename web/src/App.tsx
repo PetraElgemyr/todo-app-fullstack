@@ -7,10 +7,14 @@ function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const getTodos = async () => {
-    const response = await fetch(BASE_URL + "/TodoApp/GetTodos").then(
-      (response) => response.json()
-    );
-    setTodos(response);
+    try {
+      const response = await fetch(BASE_URL + "/TodoApp/GetTodos").then(
+        (response) => response.json()
+      );
+      setTodos(response);
+    } catch (error) {
+      return error;
+    }
   };
 
   useEffect(() => {
