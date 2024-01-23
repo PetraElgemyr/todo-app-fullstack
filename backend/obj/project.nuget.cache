@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zzTe/i8+V5WaMQl4kLZKDpxEUjf8Gu5m3nL4ex/tyO7HmXVbnUbU+oh6n4hT0FhxwtU7WtJBUz/J3zdOWcZZ7w==",
+  "dgSpecHash": "QYVsD3pxFoufmcLJvHVxuLsIvxG8e6MOC+LdEuNnQx+hcSWvsVQoEqjSMvpGpEkRB+v46jOQ5u8PgLD/gGin1Q==",
   "success": true,
   "projectFilePath": "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\backend.csproj",
   "expectedPackageFiles": [
@@ -83,11 +83,7 @@
     "C:\\Users\\Min Dator\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\Min Dator\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512",
     "C:\\Users\\Min Dator\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
-    "C:\\Users\\Min Dator\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\Min Dator\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Min Dator\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Min Dator\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
-    "C:\\Users\\Min Dator\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+    "C:\\Users\\Min Dator\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
