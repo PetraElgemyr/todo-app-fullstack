@@ -42,9 +42,10 @@ namespace TodoApp.Controllers
             return todo;
         }
 
-        [HttpDelete]
+        [HttpDelete]        
         [Route("DeleteTodo")]
-        public async Task<IActionResult> DeleteTodoAsync(int id)
+
+        public async Task<IActionResult> DeleteTodo(long id)
         {
             var todo = await _context.Todo.FindAsync(id);
             if (todo == null)
