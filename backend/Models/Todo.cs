@@ -2,10 +2,10 @@
 {
     public class Todo
     {
-        public long id { get; set; }
+        public long Id { get; set; }
 
-        public string description { get; set; } = "";
+        public string Description { get; set; } = "";
 
-        public bool isChecked { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

@@ -6,6 +6,8 @@ using System.Security.AccessControl;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using backend.Context;
 
 
 namespace TodoApp.Controllers
@@ -16,101 +18,44 @@ namespace TodoApp.Controllers
     {
 
         private IConfiguration _configuration;
+        private readonly backend.Context.AppContext _context;
 
-        public TodoAppController(IConfiguration configuration)
+        public TodoAppController(IConfiguration configuration, backend.Context.AppContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
-
         [HttpGet]
         [Route("GetTodos")]
-        public List<Todo> GetTodos()
+        public async Task<List<Todo>> GetTodos()
         {
-            string query = "select * from dbo.todos";
-            DataTable table = new DataTable();
-
-            string? sqlDatasource = _configuration.GetConnectionString("TodoApp");
-
-            if (sqlDatasource == null)
-            {
-                throw new InvalidOperationException("Missing connection string.");
-            }
-
-            SqlDataReader myReader;
-
-            using (SqlConnection myCon = new SqlConnection(sqlDatasource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myReader = myCommand.ExecuteReader();
-                    table.Load(myReader);
-                    myReader.Close();
-                }
-                myCon.Close();
-            }
-            return table.AsEnumerable().Select(row => new Todo
-            {
-                id = row.Field<long>("id"),
-                description = row.Field<string>("description"),
-                isChecked = row.Field<bool>("isChecked")
-            }).ToList();
+            return await _context.Todo.ToListAsync();
         }
 
         [HttpPost]
         [Route("AddTodo")]
-        public Todo AddTodo([FromForm] string description)
+        public async Task<Todo> AddTodo([FromForm] string description)
         {
-            string query = "INSERT INTO dbo.todos (description, isChecked) OUTPUT INSERTED.id VALUES (@description, @isChecked)";
-
-            string? sqlDatasource = _configuration.GetConnectionString("TodoApp");
-
-            if (sqlDatasource == null)
-            {
-                throw new InvalidOperationException("Missing connection string.");
-            }
-
-            long newId;
-
-            using (SqlConnection myCon = new SqlConnection(sqlDatasource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myCommand.Parameters.AddWithValue("@description", description);
-                    myCommand.Parameters.AddWithValue("@isChecked", false);
-                    newId = (long)myCommand.ExecuteScalar();
-                }
-                myCon.Close();
-            }
-
-            return new Todo { id = newId, description = description, isChecked = false };
+            var todo = new Todo { Description = description, IsChecked = false };
+            _context.Todo.Add(todo);
+            await _context.SaveChangesAsync();
+            return todo;
         }
 
         [HttpDelete]
         [Route("DeleteTodo")]
-        public JsonResult DeleteTodo(int id)
+        public async Task<IActionResult> DeleteTodoAsync(int id)
         {
-            string query = "DELETE FROM dbo.todos WHERE id=@id";
-
-            string? sqlDatasource = _configuration.GetConnectionString("TodoApp");
-
-            if (sqlDatasource == null)
+            var todo = await _context.Todo.FindAsync(id);
+            if (todo == null)
             {
-                throw new InvalidOperationException("Missing connection string.");
+                return NotFound();
             }
 
-            using (SqlConnection myCon = new SqlConnection(sqlDatasource))
-            {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
-                {
-                    myCommand.Parameters.AddWithValue("@id", id);
-                    myCommand.ExecuteNonQuery();
-                }
-            }
+            _context.Todo.Remove(todo);
+            await _context.SaveChangesAsync();
 
-            return new JsonResult("Deleted successfully");
+            return NoContent();
         }
     }
 }
