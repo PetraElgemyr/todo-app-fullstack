@@ -29,7 +29,7 @@ namespace TodoApp.Controllers
         [Route("GetTodos")]
         public async Task<List<Todo>> GetTodos()
         {
-            return await _context.Todo.ToListAsync();
+            return await _context.Todos.ToListAsync();
         }
 
       
@@ -38,7 +38,7 @@ namespace TodoApp.Controllers
         [Route("AddTodo")]
         public async Task<Todo> AddTodo([FromBody] Todo todo)
         {
-            _context.Todo.Add(todo);
+            _context.Todos.Add(todo);
             await _context.SaveChangesAsync();
             return todo;
         }
@@ -49,13 +49,13 @@ namespace TodoApp.Controllers
 
         public async Task<IActionResult> DeleteTodo(long id)
         {
-            var todo = await _context.Todo.FindAsync(id);
+            var todo = await _context.Todos.FindAsync(id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            _context.Todo.Remove(todo);
+            _context.Todos.Remove(todo);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -66,7 +66,7 @@ namespace TodoApp.Controllers
 
         public async Task<Todo> UpdateTodo(long id)
         {
-            Todo todo = await _context.Todo.FindAsync(id);
+            Todo todo = await _context.Todos.FindAsync(id);
             if (todo == null)
             {
                NotFound();

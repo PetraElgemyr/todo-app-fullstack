@@ -14,6 +14,9 @@ namespace backend.Context
             : base(options)
         {
         }
-        public DbSet<TodoApp.Models.Todo> Todo { get; set; } = default!;
+        public DbSet<TodoApp.Models.Todo> Todos { get; set; } = default!;
+        public DbSet<TodoApp.Models.Person> Persons { get; set; } = default!;
+
+        public DbSet<TodoApp.Models.List> Lists { get; set; } = default!;
     }
 }

@@ -7,5 +7,7 @@
         public string Description { get; set; } = "";
 
         public bool IsChecked { get; set; }
+
+        public long ListId { get; set; }
     }
 }
