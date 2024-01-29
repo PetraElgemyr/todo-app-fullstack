@@ -32,15 +32,17 @@ namespace TodoApp.Controllers
             return await _context.Todo.ToListAsync();
         }
 
+      
+
         [HttpPost]
         [Route("AddTodo")]
-        public async Task<Todo> AddTodo([FromForm] string description)
+        public async Task<Todo> AddTodo([FromBody] Todo todo)
         {
-            var todo = new Todo { Description = description, IsChecked = false };
             _context.Todo.Add(todo);
             await _context.SaveChangesAsync();
             return todo;
         }
+
 
         [HttpDelete]        
         [Route("DeleteTodo")]
