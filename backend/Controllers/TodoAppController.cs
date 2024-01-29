@@ -58,5 +58,23 @@ namespace TodoApp.Controllers
 
             return NoContent();
         }
+
+        [HttpPut]
+        [Route("UpdateTodo")]
+
+        public async Task<Todo> UpdateTodo(long id)
+        {
+            Todo todo = await _context.Todo.FindAsync(id);
+            if (todo == null)
+            {
+               NotFound();
+                return null;
+            }
+            todo.IsChecked = !todo.IsChecked;
+            await _context.SaveChangesAsync();
+
+            return todo; 
+
+        }
     }
 }

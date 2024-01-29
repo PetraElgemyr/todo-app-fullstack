@@ -11,6 +11,8 @@ function App() {
       const response = await fetch(BASE_URL + "/TodoApp/GetTodos").then(
         (response) => response.json()
       );
+      console.log(response);
+
       setTodos(response);
     } catch (error) {
       return error;
@@ -20,13 +22,26 @@ function App() {
   useEffect(() => {
     getTodos();
   }, []);
+
+  //localhost:5014/api/TodoApp/UpdateTodo?id=1
+  const toggleIsChecked = async (id: number) => {
+    await fetch(BASE_URL + "/TodoApp/UpdateTodo?id=" + id, {
+      method: "PUT",
+    });
+    getTodos();
+  };
   return (
     <>
       <div>hejsan todo app kommer här</div>
-      {todos.map((todo) => (
-        <p>
-          <span>{todo.description}</span>
-          <input type="checkbox" checked={todo.isChecked} />
+      {todos.map((todo, key) => (
+        <p key={key}>
+          <span>{todo.Description}</span>
+          <input
+            type="checkbox"
+            checked={todo.IsChecked}
+            onChange={() => toggleIsChecked(todo.Id)}
+          />
+          <span>{todo.Id}</span>
         </p>
       ))}
     </>
