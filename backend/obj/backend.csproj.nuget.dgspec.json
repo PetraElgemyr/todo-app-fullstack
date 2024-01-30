@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\backend.csproj": {}
+    "C:\\git\\todo-app-fullstack\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\backend.csproj": {
+    "C:\\git\\todo-app-fullstack\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\git\\todo-app-fullstack\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\backend.csproj",
-        "packagesPath": "C:\\Users\\Min Dator\\.nuget\\packages\\",
-        "outputPath": "C:\\Skola\\Medieinstitutet\\CSharp\\TodoApp\\backend\\obj\\",
+        "projectPath": "C:\\git\\todo-app-fullstack\\backend\\backend.csproj",
+        "packagesPath": "C:\\Users\\utv-pa1223aa\\.nuget\\packages\\",
+        "outputPath": "C:\\git\\todo-app-fullstack\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Min Dator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\utv-pa1223aa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[6.0.0, )"

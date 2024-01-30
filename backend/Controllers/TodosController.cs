@@ -14,13 +14,13 @@ namespace TodoApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoAppController : ControllerBase
+    public class TodosController : ControllerBase
     {
 
         private IConfiguration _configuration;
         private readonly backend.Context.AppContext _context;
 
-        public TodoAppController(IConfiguration configuration, backend.Context.AppContext context)
+        public TodosController(IConfiguration configuration, backend.Context.AppContext context)
         {
             _configuration = configuration;
             _context = context;
@@ -58,13 +58,13 @@ namespace TodoApp.Controllers
             _context.Todos.Remove(todo);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         [HttpPut]
         [Route("UpdateTodo")]
 
-        public async Task<Todo> UpdateTodo(long id)
+        public async Task<Todo?> UpdateTodo(long id)
         {
             Todo todo = await _context.Todos.FindAsync(id);
             if (todo == null)
